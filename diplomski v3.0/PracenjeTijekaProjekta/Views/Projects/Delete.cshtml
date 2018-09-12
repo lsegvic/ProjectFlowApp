@@ -1,0 +1,59 @@
+﻿@model PracenjeTijekaProjekta.Models.PracenjeProjekta.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+<link href="~/Content/deleteUsersProjects.css" rel="stylesheet" />
+
+<h3>Are you sure you want to delete selected data?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="font-size:medium;margin-bottom:2%; margin-left:-3%">
+            Date
+        </dt>
+
+        <dd style="margin-left:23%;">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt style="font-size:medium;margin-bottom:2%; margin-left:-3%">
+            Description
+        </dt>
+
+        <dd style="margin-left:23%;">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt style="font-size:medium;margin-bottom:2%; margin-left:-3%">
+            Category
+        </dt>
+
+        <dd style="margin-left:23%;">
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt style="font-size:medium;margin-bottom:2%; margin-left:-3%">
+            Duration
+        </dt>
+
+        <dd style="margin-left:23%;">
+            @Html.DisplayFor(model => model.Duration)
+        </dd>
+        <dt style="font-size:medium;margin-bottom:2%; margin-left:-3%">
+            Number of people
+        </dt>
+
+        <dd style="margin-left:23%;">
+            @Html.DisplayFor(model => model.NumP)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions " style="margin-left:10%; margin-bottom:3%; font-size:medium ">
+            <input type="submit" value="Delete" class="btn btn-default" style="padding:2% 2% 2% 2%"/>
+            @Html.ActionLink("Back to List", "Index", new { Model.ProjectName })
+        </div>
+    }
+</div>

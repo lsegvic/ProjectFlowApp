@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-1.12.1.js"></script>
+    <link href="~/Content/custom.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        #myNavigationBar {
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        .navbar-nav li:hover, .navbar-nav li.active a, .navbar-nav li.dropdown:hover, .navbar-nav li.dropdown a:hover, .navbar-header a {
+            background: rgba(200, 38, 133, 0.64);
+        }
+        .navbar-nav li.a{
+            background: rgba(0, 0, 0, 0.65);
+        }
+        ul, li {
+            background: transparent;
+        }
+            ul.dropdown-menu {
+                background-color: rgba(0, 0, 0, 0.75);
+            }
+           
+        
+    </style>
+</head>
+<body>
+    <div id="myNavigationBar" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">                   
+                @if (User.IsInRole("Admin"))
+                {
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a href="@Url.Action("Index", "UsersProjects")">
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Roles
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("Index", "Roles")"><span>Roles</span></a></li>
+                        <li><a href="@Url.Action("Create", "Roles")"><span>Create new role</span></a></li>
+                        <li><a href="@Url.Action("AssignRole", "Admin")"><span>Assign role</span></a></li>
+                    </ul>
+                </li>
+                
+                    <li><a href="@Url.Action("Index", "Categories")"><span>Categories</span></a></li>
+                    
+            </ul>
+
+                    <form method="get" class="navbar-form navbar-left" action="@Url.Action("Index", "UsersProjects")" role="search">
+                        @using (Html.BeginForm("Index", "UsersProjects", FormMethod.Get))
+                        {
+                            //ako trenutni view nije UsersProjects/Index search se nece ni pojavljivati
+                            if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "UsersProjects"
+                                && HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index")
+                            {
+                                <div class="form-group">
+                                    @Html.TextBox("searchString", "", new { @class = "form-control", @placeholder = " Search project", @id = "searchInput" })
+                                </div>
+                                <div class="form-group">
+                                    <div class=" col-md-12">
+                                        <input type="submit" value="Search" class="form-control" />
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </form>
+                }
+                else if (User.IsInRole("Project manager"))
+                {
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="@Url.Action("Index", "UsersProjects")">
+                                <span>Projects</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form method="get" class="navbar-form navbar-left" action="@Url.Action("Index", "UsersProjects")" role="search">
+                        @using (Html.BeginForm("Index", "UsersProjects", FormMethod.Get))
+                        {
+                            //ako trenutni view nije UsersProjects/Index search se nece ni pojavljivati
+                            if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "UsersProjects"
+                                && HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index")
+                            {
+                                <div class="form-group">
+                                    @Html.TextBox("searchString", "", new { @class = "form-control", @placeholder = " Search project", @id = "searchInput" })
+                                </div>
+                                <div class="form-group">
+                                    <div class=" col-md-12">
+                                        <input type="submit" value="Search" class="form-control" />
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </form>
+                }
+                else if (User.IsInRole("Student"))
+                {
+                    <ul class="nav navbar-nav" >
+                        <li >
+                            <a  href="@Url.Action("Index", "UsersProjects")">
+                                <span >Projects</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <form method="get" class="navbar-form navbar-left" action="@Url.Action("Index", "UsersProjects")" role="search">
+                        @using (Html.BeginForm("Index", "UsersProjects", FormMethod.Get))
+                        { 
+                            //ako trenutni view nije UsersProjects/Index search se nece ni pojavljivati
+                            if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "UsersProjects"
+                                && HttpContext.Current.Request.RequestContext.RouteData.Values["action"].ToString() == "Index")
+                            {
+                        <div class="form-group">
+                            @Html.TextBox("searchString", "", new { @class = "form-control", @placeholder = " Search project", @id = "searchInput" })                        
+                        </div>
+                                <div class="form-group">
+                                    <div class=" col-md-12">
+                                        <input type="submit" value="Search" class="form-control" />
+                                    </div>
+                                </div>                             
+                            }
+                        }
+                    </form>
+                }
+                    <div>@Html.Partial("_LoginPartial")</div> 
+        </div>
+    </div>
+    <br />
+    <div class="main-w3l">
+        <div class="w3layouts-main">
+            @RenderBody()
+            <footer class="footer">
+                <p> @DateTime.Now.Year - Lorena Šegvić</p>
+            </footer>
+        </div>
+   </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+

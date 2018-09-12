@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "AssignRole";
+}
+<link href="~/Content/indexRoles.css" rel="stylesheet" />
+<h2>Assign Role</h2>
+@using (Html.BeginForm("AssignRole", "Admin", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        <hr />
+        <div class="col-md-10">
+            <label class="control-label" style="margin-left:2%;margin-right:9%;margin-bottom:10%;font-size:medium">Select User</label>
+            @Html.DropDownList("UserEmail", (IEnumerable<SelectListItem>)ViewBag.Users, "Select...", new { @class = "btn btn-default dropdown-toggle", @style = "width: 62%;margin-left:-2%" })
+        </div>
+        <div class="col-md-10">
+            <label class="control-label" style="margin-left:2%;margin-top:20px; margin-right:9%;font-size:medium">Select Role</label>
+            @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles, "Select...", new { @class = "btn btn-default dropdown-toggle", @style = "width: 62%;margin-left:-2%" })
+        </div>
+    </div>
+    @Html.ValidationMessage("", new { @class = "text-danger", @style = "color:orange;margin-top:10%" })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" style="margin-top:30px; margin-left:-1px">
+            <input type="submit" value="Assign role" class="btn btn-default" style="width:55%;height:5%;padding:2% 3% 2% 3%; margin-top:20%;margin-left:30%" />
+        </div>
+    </div>
+}
+

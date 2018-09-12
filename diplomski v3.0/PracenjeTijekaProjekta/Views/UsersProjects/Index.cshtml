@@ -1,0 +1,142 @@
+﻿@model PagedList.IPagedList<PracenjeTijekaProjekta.Models.PracenjeProjekta.UsersProject>
+
+
+
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "My projects";
+}
+@if (!User.IsInRole("Admin") && !User.IsInRole("Student") && !User.IsInRole("Project manager"))
+{
+    <label>User has not been assigned role yet</label>
+
+}
+else
+{
+    <div class="row">
+        @if (User.IsInRole("Admin"))
+        {
+            <a style="float:right; color:white;cursor: pointer; margin-right:4%;margin-top:1%" onclick="location.href = '@(Url.Action("Index", "UsersProjects", new { sortOrder = ViewBag.DateSortParm }))'">Sort projects by date</a>
+            <input type="checkbox" name="checkPM" id="chbxPM" style="cursor:pointer;margin-left:5%;margin-top:1%" @(ViewBag.isChecked == true ? "checked" : "") /><a style="color:white;cursor:pointer"> Check unassigned projects</a>
+       
+            <hr />
+            foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" style="width:320px; height:190px; border-radius: 25px;border: 2px solid #e5e5e5; padding: 18px; margin-left:33px ;margin-bottom:1%">
+                    <div class="card-body" style="height:80px">
+                        <h4 class="card-title">
+                            <a style="cursor: pointer" onclick="location.href = '@(Url.Action("Index", "Projects", new { ProjectName = item.ProjectName }))'">@item.ProjectName</a>
+                        </h4>
+                        <h5>
+                            <label>@item.UsersNameSurname</label>
+                        </h5>
+                        <h5>
+                            <label>
+                                @item.Date.ToString().Split()[0]
+                            </label>
+                        </h5>
+                    </div>
+                    <hr />
+
+                    <a title="Details" onclick="location.href = '@(Url.Action("Details", "UsersProjects", new { id = item.ProjectId }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/details.png" style="width:20px; height:20px;" />
+                    </a>
+                    @if (@item.ProjectManager == null)
+                    {
+                        <a title="Assign Project Manager" style="padding-left:10px; cursor: pointer" onclick="location.href = '@(Url.Action("AssignProjectManager", "Admin", new { ProjectName = item.ProjectName }))'">
+                            <img src="~/images/user.jpg" style="float:right;width:20px; height:20px;" />
+                        </a>
+                    }
+                    <a title="Delete" style="float:left; cursor: pointer" onclick="location.href = '@(Url.Action("Delete", "UsersProjects", new { id = item.ProjectId }))'">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </div>
+            }
+
+        }
+        else if (User.IsInRole("Project manager"))
+        {
+            <h2 style="margin-top:0%;margin-left:3%;background-color:transparent;color:white;text-align:center;font-size:x-large;font-family:'Lucida Handwriting'">@ViewBag.UsersNameSurname</h2>
+            <hr style="margin-bottom:3%;margin-top:0% " />
+            <a style="float:right; color:white;cursor: pointer; margin-right:5%;margin-top:-2%" onclick="location.href = '@(Url.Action("Index", "UsersProjects", new { sortOrder = ViewBag.DateSortParm }))'">Sort projects by date</a>
+
+            foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" style="width:320px; height:190px; border-radius: 25px;border: 2px solid #e5e5e5; padding: 18px; margin-top:1%; margin-left:33px ">
+
+                    <div class="card-body" style="height:80px;">
+                        <h4 class="card-title">
+                            <a style="cursor: pointer" onclick="location.href = '@(Url.Action("Index", "Projects", new { ProjectName = item.ProjectName }))'">@item.ProjectName</a>
+                        </h4>
+                        <h5>
+                            <label>@item.UsersNameSurname</label>
+                        </h5>
+                        <h5>
+                            <label>
+                                @item.Date.ToString().Split()[0]
+                            </label>
+                        </h5>
+                    </div>
+                    <hr />
+
+                    <a title="Details" onclick="location.href = '@(Url.Action("Details", "UsersProjects", new { id = item.ProjectId }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/details.png" style="width:20px; height:20px;" />
+                    </a>
+                    <a title="Delete" style="float:left; cursor: pointer" onclick="location.href = '@(Url.Action("Delete", "UsersProjects", new { id = item.ProjectId }))'">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </div>
+            }
+
+        }
+        else if (User.IsInRole("Student"))
+        {
+            <a style="float:right; color:white;cursor: pointer; margin-right:4%;margin-top:3%" onclick="location.href = '@(Url.Action("Index", "UsersProjects", new { sortOrder = ViewBag.DateSortParm }))'">Sort projects by date</a>
+
+            <input type="submit" value="Add new project" class="btn btn-default" style="padding:1%;margin-left:3%" onclick="location.href = '@(Url.Action("Create", "UsersProjects"))'" />
+            <hr />
+            foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" style="width:310px; height:180px; border-radius: 25px;border: 2px solid #e5e5e5; padding:15px; margin-left:2%;margin-right:2%;margin-bottom:2%">
+                    <div class="card-body" style="height:80px;">
+                        <h4 class="card-title">
+                            <a style="cursor: pointer" onclick="location.href = '@(Url.Action("Index", "Projects", new { ProjectName = item.ProjectName }))'">@item.ProjectName</a>
+                        </h4>
+                        <h5>
+                            <label>
+                                @item.Date.ToString().Split()[0]
+                            </label>
+                        </h5>
+                    </div>
+                    <hr />
+
+                    <a title="Details" onclick="location.href = '@(Url.Action("Details", "UsersProjects", new { id = item.ProjectId }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/details.png" style="width:20px; height:20px;" />
+                    </a>
+                    <a title="Delete" style="float:left; cursor: pointer" onclick="location.href = '@(Url.Action("Delete", "UsersProjects", new { id = item.ProjectId }))'">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </div>
+            }
+        }
+    </div>
+    <center>
+        <br />
+        <div style="margin-bottom:-3%;margin-top:-1%">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("Index",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </center>
+}
+@section scripts
+    {
+    <script>
+        $(function () {
+            $('#chbxPM').click(function () {
+                var isChecked = $(this).is(":checked");
+                window.location.href = 'http://localhost:46267/UsersProjects/Index?sortOrder=date_desc&currentFilter&searchString&page=1&chboxPM=' + isChecked;
+            })
+        });
+    </script>
+}

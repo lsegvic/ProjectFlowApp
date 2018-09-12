@@ -1,0 +1,180 @@
+﻿@model IEnumerable<PracenjeTijekaProjekta.Models.PracenjeProjekta.Project>
+
+@if (User.IsInRole("Student"))
+{
+    <p>
+        <a title="Add data" style="float:right; cursor: pointer" onclick="location.href = '@(Url.Action("Create", "Projects", new { ProjectName = ViewBag.projectName }))'">
+            <img src="~/images/plus.png" style="width:40px; height:40px;" />
+        </a>
+    </p>
+}
+<h3 style="text-align:center">@ViewBag.projectName</h3>
+<br />
+
+@if (User.IsInRole("Admin"))
+{
+    <table class="table">
+        <tr style="background-color:#edac4e;color:black">
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumP)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumP)
+                </td>
+                <td>
+                    <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
+                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                    </a>
+                    <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+}
+else if (User.IsInRole("Student"))
+{
+
+    <table class="table">
+        <tr style="background-color:#edac4e;color:black">
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumP)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumP)
+                </td>
+                <td>
+                    <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
+                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                    </a>
+                    <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+
+}
+else if (User.IsInRole("Project manager"))
+{
+    <table class="table">
+        <tr style="background-color:#edac4e;color:black">
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumP)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumP)
+                </td>
+                <td>
+                    <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
+                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                    </a>
+                    <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
+                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "UsersProjects")
+</div>

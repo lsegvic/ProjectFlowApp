@@ -1,0 +1,81 @@
+﻿body {
+    background-image: url('../images/applandeo-background.png');
+    background-size: cover;
+}
+tr, td, span, label, h5, div, dl, dd, dt {
+    color: white;
+}
+td {
+    margin-right: 100px;
+}
+
+.w3layouts-main {
+    width: 32%;
+    height: 600px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px 35px 10px 35px;
+    margin-top: -10px;
+}
+
+  
+
+    .w3layouts-main a {
+        color: #fff;
+        transition: 0.5s all;
+        -webkit-transition: 0.5s all;
+        -o-transition: 0.5s all;
+        -moz-transition: 0.5s all;
+        -ms-transition: 0.5s all;
+    }
+@media(max-width:1440px) {
+    .w3layouts-main {
+        width: 28%;
+    }
+}
+
+@media(max-width:1366px) {
+    .w3layouts-main {
+        width: 30%;
+    }
+}
+
+@media(max-width:1280px) {
+    .w3layouts-main {
+        width: 33%;
+    }
+
+    .agileheader h1 {
+        font-size: 41px;
+    }
+
+    .w3layouts-main h2 {
+        font-size: 27px;
+    }
+}
+
+@media(max-width:1080px) {
+    .w3layouts-main {
+        width: 49%;
+    }
+}
+
+@media(max-width:1024px) {
+    .w3layouts-main {
+        width: 40%;
+    }
+}
+
+@media(max-width:991px) {
+    .w3layouts-main {
+        width: 42%;
+    }
+
+    .agileheader h1 {
+        font-size: 38px;
+    }
+
+    .w3layouts-main h2 {
+        font-size: 25px;
+    }
+}

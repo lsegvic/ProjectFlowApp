@@ -1,0 +1,30 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+@{
+    ViewBag.Title = "Delete";
+}
+<link href="~/Content/deleteUsersProjects.css" rel="stylesheet" />
+
+<h3>Are you sure you want to delete role?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="font-size:medium;margin-bottom:1%; margin-left:-8%">
+            Role name
+        </dt>
+        <dd style="margin-left:20%">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions " style="margin-left:5%; font-size:medium">
+        <input type="submit" value="Delete" class="btn btn-default" style="width:13%;height:5%;padding:2% 2% 2% 2%;margin-left:-2%;margin-right:-2%"/>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    }
+</div>
