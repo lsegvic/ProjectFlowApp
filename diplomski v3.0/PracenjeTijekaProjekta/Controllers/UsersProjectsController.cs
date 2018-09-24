@@ -75,7 +75,7 @@ namespace PracenjeTijekaProjekta.Controllers
                     case "date_desc":
                         projects = projects.OrderByDescending(s => s.Date);
                         break;
-                    default:  // Name ascending 
+                    default:  
                         projects = projects.OrderBy(s => s.ProjectName);
                         break;
                 }

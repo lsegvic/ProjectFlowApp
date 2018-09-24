@@ -10,6 +10,7 @@ using PracenjeTijekaProjekta.Models.PracenjeProjekta;
 
 namespace PracenjeTijekaProjekta.Controllers
 {
+    [Authorize]
     public class ProjectsController : Controller
     {
         private ProjectContext db = new ProjectContext();
@@ -17,14 +18,21 @@ namespace PracenjeTijekaProjekta.Controllers
         // GET: Projects
         public ActionResult Index(string ProjectName)
         {
-            //admin vidi sve projekte
             if (User.IsInRole("Admin") || User.IsInRole("Student") || User.IsInRole("Project manager"))
             {
+                int totalDurationOfProject = 0;
                 ViewBag.projectName = ProjectName;
                 if (ProjectName != null)
-                {
-                    List<Project> up = db.Projects.Where(x => x.ProjectName == ProjectName).ToList();
-                    return View(up);
+                {          
+                    List<Project> project = db.Projects.Where(x => x.ProjectName == ProjectName).ToList();
+                    foreach (var item in db.Projects.ToList())
+                        if (ProjectName == item.ProjectName)
+                        {
+                            totalDurationOfProject += item.Duration;                           
+                        }
+                   
+                    ViewBag.totalDuration = (totalDurationOfProject/60).ToString("0") + " hours";
+                    return View(project);
                 }
             }          
             return View();

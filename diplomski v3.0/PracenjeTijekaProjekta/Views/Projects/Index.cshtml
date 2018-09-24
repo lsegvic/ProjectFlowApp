@@ -4,7 +4,7 @@
 {
     <p>
         <a title="Add data" style="float:right; cursor: pointer" onclick="location.href = '@(Url.Action("Create", "Projects", new { ProjectName = ViewBag.projectName }))'">
-            <img src="~/images/plus.png" style="width:40px; height:40px;" />
+            <img src="~/images/plus2.png" style="width:40px; height:40px;" />
         </a>
     </p>
 }
@@ -54,17 +54,29 @@
                 </td>
                 <td>
                     <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
-                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                        <img src="~/images/edit2.png" style="width:20px; height:20px;" />
                     </a>
                     <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
-                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                        <img src="~/images/trash2.png" style="width:20px; height:20px;" />
                     </a>
                 </td>
             </tr>
-
         }
-
+            <tr>
+                <th>
+                    <img src="~/images/orangearrow.gif" style="width:10px; height:10px; margin-top:-2%;margin-left:-5%" /> @Html.ActionLink("Back to List", "Index", "UsersProjects")
+                </th>
+                <th></th>
+                <th style="font-weight:800">Total duration</th>
+                <th style="font-weight:800">
+                    @ViewBag.totalDuration
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
     </table>
+
+
 }
 else if (User.IsInRole("Student"))
 {
@@ -109,14 +121,27 @@ else if (User.IsInRole("Student"))
                 </td>
                 <td>
                     <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
-                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                        <img src="~/images/edit2.png" style="width:20px; height:20px;" />
                     </a>
                     <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
-                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                        <img src="~/images/trash2.png" style="width:20px; height:20px;" />
                     </a>
                 </td>
             </tr>
+
         }
+        <tr>
+            <th>
+                <img src="~/images/orangearrow.gif" style="width:10px; height:10px; margin-top:-2%;margin-left:-5%" /> @Html.ActionLink("Back to List", "Index", "UsersProjects")
+            </th>
+            <th></th>
+            <th style="font-weight:800">Total duration</th>
+            <th style="font-weight:800">
+                @ViewBag.totalDuration
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
     </table>
 
 
@@ -164,17 +189,29 @@ else if (User.IsInRole("Project manager"))
                 </td>
                 <td>
                     <a style="cursor: pointer" title="Edit" onclick="location.href = '@(Url.Action("Edit", "Projects", new { id = item.Id, ProjectName = item.ProjectName}))'">
-                        <img src="~/images/edit.png" style="width:20px; height:20px;" />
+                        <img src="~/images/edit2.png" style="width:20px; height:20px;" />
                     </a>
                     <a title="Delete" onclick="location.href = '@(Url.Action("Delete", "Projects", new { id = item.Id }))'" style="padding-left:10px; cursor: pointer">
-                        <img src="~/images/trash.png" style="width:20px; height:20px;" />
+                        <img src="~/images/trash2.png" style="width:20px; height:20px;" />
                     </a>
                 </td>
             </tr>
         }
+        <tr>
+            <th>
+                <img src="~/images/orangearrow.gif" style="width:10px; height:10px; margin-top:-2%;margin-left:-5%" /> @Html.ActionLink("Back to List", "Index", "UsersProjects")
+            </th>
+            <th></th>
+            <th style="font-weight:800">Total duration</th>
+            <th style="font-weight:800">
+                @ViewBag.totalDuration
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
     </table>
 }
 
-<div>
+@*<div>
     @Html.ActionLink("Back to List", "Index", "UsersProjects")
-</div>
+</div>*@

@@ -32,7 +32,7 @@ namespace PracenjeTijekaProjekta.Models.PracenjeProjekta
         [Required]
         [Range(1,1000)]
         [RegularExpression("([1-9][0-9]*)",ErrorMessage = "Number of people needs to be integer.")]
-        [DisplayName("Number of people")]
+        [DisplayName("People")]
         public int? NumP { get; set; }
     }
 }

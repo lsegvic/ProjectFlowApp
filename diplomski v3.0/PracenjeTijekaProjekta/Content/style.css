@@ -143,7 +143,7 @@ input[type="email"], input[type="password"], input[type="text"]{
 }
 
 input[type="email"] {
-    background: url("../images/emailicon.png") no-repeat 8px 9px;
+    background: url("../images/emailicon2.png") no-repeat 8px 9px;
     background-size: 28px;
 }
 
